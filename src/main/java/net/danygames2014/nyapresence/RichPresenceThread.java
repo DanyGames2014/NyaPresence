@@ -1,12 +1,9 @@
 package net.danygames2014.nyapresence;
 
-
 import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
 import de.jcm.discordgamesdk.activity.Activity;
 import de.jcm.discordgamesdk.activity.ActivityType;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.World;
 
 import java.time.Instant;
 
@@ -46,9 +43,10 @@ public class RichPresenceThread extends Thread {
                     }
                     
                     try {
+                        //noinspection BusyWait
                         Thread.sleep(NyaPresence.CONFIG.enabled ? 200 : 2000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        NyaPresence.LOGGER.error("Rich Presence thread interrupted.", e);
                     }
                 }
             }
@@ -56,7 +54,6 @@ public class RichPresenceThread extends Thread {
     }
     
     public void updateActivity() {
-        System.err.println("Updating activity...");
         NyaPresence.PRESENCE_RESOLVER.resolve(activity);
         core.activityManager().updateActivity(activity);
     }
