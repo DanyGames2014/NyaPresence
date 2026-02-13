@@ -95,7 +95,7 @@ dependencies {
         exclude group: "babric", module: "fabric-loader"
     }
 
-    implementation 'com.github.JnCrMx:discord-game-sdk4j:v1.0.0'
+    implementation (include('com.github.JnCrMx:discord-game-sdk4j:v1.0.0'))
 
     if (project.hasProperty("modmenu_version")) {
         modImplementation("net.danygames2014:modmenu:${project.modmenu_version}") {
