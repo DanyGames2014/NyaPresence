@@ -2,6 +2,7 @@ package net.danygames2014.nyapresence;
 
 import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
+import de.jcm.discordgamesdk.LogLevel;
 import de.jcm.discordgamesdk.activity.Activity;
 import de.jcm.discordgamesdk.activity.ActivityType;
 
@@ -22,10 +23,11 @@ public class RichPresenceThread extends Thread {
     public void run() {
         try (CreateParams params = new CreateParams()) {
             params.setClientID(Long.parseLong(NyaPresence.CONFIG.applicationId));
-            params.setFlags(CreateParams.getDefaultFlags());
+            params.setFlags(CreateParams.Flags.NO_REQUIRE_DISCORD);
             
             try (Core core = new Core(params)){
                 this.core = core;
+                core.setLogHook(LogLevel.INFO, (logLevel, s) -> NyaPresence.LOGGER.info("[" + logLevel + "] " + s));
                 activity = initActivity(core);
                 
                 while (runRpc) {
