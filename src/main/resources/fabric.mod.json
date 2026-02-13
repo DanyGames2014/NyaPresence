@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "nyapresence",
+  "version": "${version}",
+
+  "name": "NyaPresence",
+  "description": "",
+  "authors": [
+    "DanyGames2014"
+  ],
+
+  "license": "MIT",
+  "icon": "assets/nyapresence/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.danygames2014.nyapresence.NyaPresence"
+    ],
+    "stationapi:event_bus": [
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ],
+    "gcapi3": [
+      "net.danygames2014.nyapresence.NyaPresence"
+    ]
+  },
+  "mixins": [
+    "nyapresence.mixins.json"
+  ],
+  "accessWidener": "nyapresence.accesswidener",
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}
